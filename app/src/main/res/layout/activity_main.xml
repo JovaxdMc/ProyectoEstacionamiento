@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/id_usuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrega el id"
+           />
+
+        <EditText
+            android:id="@+id/ed_Nombre"
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrega el Nombre"
+            />
+        <EditText
+            android:id="@+id/ed_Apellido"
+            android:layout_marginTop="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrega el Apellido"
+          />
+        <EditText
+            android:id="@+id/ed_Password"
+            android:layout_marginTop="150dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrega el Password"
+             />
+        <EditText
+            android:id="@+id/ed_rol"
+            android:layout_marginTop="200dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingrega el rol"
+            />
+
+        <Button
+            android:id="@+id/boton_Agregar"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="Agregar"
+            android:layout_marginTop="300dp"/>
+        <Button
+            android:id="@+id/boton_Eliminar"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="Eliminar"
+            android:layout_marginTop="300dp"
+            android:layout_marginLeft="120dp"/>
+        <Button
+            android:id="@+id/boton_Modificar"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:text="Modificar"
+            android:layout_marginTop="300dp"
+            android:layout_marginLeft="230dp"/>
+
+        <Button
+            android:id="@+id/boton_Buscar"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:text="Buscar"
+            android:layout_marginTop="370dp"
+            android:layout_marginLeft="120dp"/>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>
