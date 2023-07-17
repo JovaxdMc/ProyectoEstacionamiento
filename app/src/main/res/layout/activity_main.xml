@@ -4,48 +4,90 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:background="#1E1E1E">
+
+      <RelativeLayout
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="500dp"
+                android:layout_height="100dp"
+                android:background="#3B3D48">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Registrar Usuarios"
+                    android:textColor="@color/white"
+                    android:textSize="40dp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="20dp"
+                    />
+            </LinearLayout>
+
+
+
+
 
 
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:gravity="center"
+        android:layout_marginLeft="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp">
 
         <EditText
             android:id="@+id/id_usuario"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:hint="Ingrega el id"
+            android:textColor="@color/white"
+            android:textColorHint="#5A5757"
+
            />
 
         <EditText
             android:id="@+id/ed_Nombre"
-            android:layout_marginTop="50dp"
-            android:layout_width="match_parent"
+            android:layout_marginTop="70dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
+             android:textColor="@color/white"
+             android:textColorHint="#5A5757"
             android:hint="Ingrega el Nombre"
             />
         <EditText
             android:id="@+id/ed_Apellido"
-            android:layout_marginTop="100dp"
-            android:layout_width="match_parent"
+            android:layout_marginTop="140dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:hint="Ingrega el Apellido"
+             android:textColor="@color/white"
+             android:textColorHint="#5A5757"
           />
         <EditText
             android:id="@+id/ed_Password"
-            android:layout_marginTop="150dp"
-            android:layout_width="match_parent"
+            android:layout_marginTop="210dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
+             android:textColor="@color/white"
+            
+             android:textColorHint="#5A5757"
             android:hint="Ingrega el Password"
              />
         <EditText
             android:id="@+id/ed_rol"
-            android:layout_marginTop="200dp"
-            android:layout_width="match_parent"
+            android:layout_marginTop="280dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:hint="Ingrega el rol"
+             android:textColor="@color/white"
+             android:textColorHint="#5A5757" android:hint="Ingrega el rol"
             />
 
         <Button
@@ -53,32 +95,41 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:text="Agregar"
-            android:layout_marginTop="300dp"/>
+            android:layout_marginTop="350dp"
+            android:backgroundTint="#F1C92F"
+            android:textColor="@color/black"
+            />
         <Button
             android:id="@+id/boton_Eliminar"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:text="Eliminar"
-            android:layout_marginTop="300dp"
+            android:backgroundTint="#F1C92F"
+            android:textColor="@color/black"
+            android:layout_marginTop="350dp"
             android:layout_marginLeft="120dp"/>
         <Button
             android:id="@+id/boton_Modificar"
-            android:layout_width="120dp"
+            android:layout_width="115dp"
             android:layout_height="50dp"
             android:text="Modificar"
-            android:layout_marginTop="300dp"
-            android:layout_marginLeft="230dp"/>
+            android:layout_marginTop="350dp"
+            android:layout_marginLeft="230dp"
+            android:backgroundTint="#F1C92F"
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/boton_Buscar"
-            android:layout_width="120dp"
+            android:layout_width="110dp"
             android:layout_height="50dp"
             android:text="Buscar"
-            android:layout_marginTop="370dp"
-            android:layout_marginLeft="120dp"/>
-
+            android:layout_marginTop="420dp"
+            android:layout_marginLeft="120dp"
+            android:backgroundTint="#F1C92F"
+            android:textColor="@color/black"
+             />
 
     </RelativeLayout>
-
+                      </RelativeLayout>
 
 </LinearLayout>
