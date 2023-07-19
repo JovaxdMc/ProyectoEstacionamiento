@@ -27,7 +27,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText id_usuario , ed_Nombre,ed_Apellido,ed_Password,ed_rol;
+    EditText id_usuario , ed_Nombre,ed_Apellido,ed_Password,ed_rol,ed_user;
     Button boton_Agregar,boton_Eliminar,boton_Modificar,boton_Buscar;
 
     @Override
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         ed_Apellido=(EditText) findViewById(R.id.ed_Apellido);
         ed_Password=(EditText) findViewById(R.id.ed_Password);
         ed_rol=(EditText) findViewById(R.id.ed_rol);
+        ed_user=(EditText) findViewById(R.id.ed_user);
 
         /*Boton*/
         boton_Agregar=(Button)findViewById(R.id.boton_Agregar);
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         boton_Agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Insertar("https://davidgon.000webhostapp.com/Estacionamiento/Usuario/insertar.php");
+                Insertar("https://estacionamientohmagdl.000webhostapp.com/Estacionamiento/usuarios/insertar.php");
 
             }
         });
@@ -60,14 +61,15 @@ public class MainActivity extends AppCompatActivity {
         boton_Eliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Eliminar("https://davidgon.000webhostapp.com/Estacionamiento/Usuario/eliminar.php?Id="+id_usuario.getText().toString());
+                Eliminar("https://estacionamientohmagdl.000webhostapp.com/Estacionamiento/usuarios/eliminar.php?id_usuario=" + id_usuario.getText().toString());
             }
         });
+
 
         boton_Modificar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Modificar("https://davidgon.000webhostapp.com/Estacionamiento/Usuario/actualizar.php");
+                Modificar("https://estacionamientohmagdl.000webhostapp.com/Estacionamiento/usuarios/actualizar.php");
 
             }
         });
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         boton_Buscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Buscar("https://davidgon.000webhostapp.com/Estacionamiento/Usuario/Buscar.php?Id="+id_usuario.getText().toString());
+                Buscar("https://estacionamientohmagdl.000webhostapp.com/Estacionamiento/usuarios/Buscar.php?Id="+id_usuario.getText().toString());
             }
         });
     }
@@ -92,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
                         ed_Apellido.setText("");
                         ed_Password.setText("");
                         ed_rol.setText("");
+                        ed_user.setText("");
 
                     }
                 },
@@ -104,11 +107,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parametros = new HashMap<String, String>();
-                parametros.put("Id", id_usuario.getText().toString());
-                parametros.put("Nombre", ed_Nombre.getText().toString());
-                parametros.put("Apellido", ed_Apellido.getText().toString());
-                parametros.put("Password", ed_Password.getText().toString());
-                parametros.put("Rol", ed_rol.getText().toString());
+                parametros.put("id_usuario", id_usuario.getText().toString());
+                parametros.put("nombre", ed_Nombre.getText().toString());
+                parametros.put("apellidos", ed_Apellido.getText().toString());
+                parametros.put("password", ed_Password.getText().toString());
+                parametros.put("username", ed_user.getText().toString());
+                parametros.put("rol", ed_rol.getText().toString());
                 return parametros;
             }
         };
@@ -129,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
                         ed_Apellido.setText("");
                         ed_Password.setText("");
                         ed_rol.setText("");
+                        ed_user.setText("");
                     }
                 },
                 new Response.ErrorListener() {
@@ -140,11 +145,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put ("Id", id_usuario.getText().toString());
-                params.put("Nombre", ed_Nombre.getText().toString());
-                params.put("Apellido", ed_Apellido.getText().toString());
-                params.put ("Password", ed_Password.getText().toString());
-                params.put("Rol", ed_rol.getText().toString());
+                params.put ("id_usuario", id_usuario.getText().toString());
+                params.put("nombre", ed_Nombre.getText().toString());
+                params.put("apellidos", ed_Apellido.getText().toString());
+                params.put("password", ed_Password.getText().toString());
+                params.put ("username", ed_user.getText().toString());
+                params.put("rol", ed_rol.getText().toString());
 
                 return params;
             }
@@ -164,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
                         ed_Apellido.setText("");
                         ed_Password.setText("");
                         ed_rol.setText("");
+                        ed_user.setText("");
                     }
                 },
                 new Response.ErrorListener() {
@@ -175,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("Id", id_usuario.getText().toString());
+                params.put("id_usuario", id_usuario.getText().toString());
                 return params;
             }
         };
@@ -192,11 +199,12 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         jsonObject = response.getJSONObject(i);
-                        id_usuario.setText(jsonObject.getString("Id"));
-                        ed_Nombre.setText(jsonObject.getString("Nombre"));
-                        ed_Apellido.setText(jsonObject.getString("Apellido"));
-                        ed_Password.setText(jsonObject.getString("Password"));
-                        ed_rol.setText(jsonObject.getString("Rol"));
+                        id_usuario.setText(jsonObject.getString("id_usuario"));
+                        ed_user.setText(jsonObject.getString("username"));
+                        ed_Nombre.setText(jsonObject.getString("nombre"));
+                        ed_Apellido.setText(jsonObject.getString("apellidos"));
+                        ed_Password.setText(jsonObject.getString("password"));
+                        ed_rol.setText(jsonObject.getString("rol"));
 
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
