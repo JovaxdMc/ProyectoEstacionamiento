@@ -8,21 +8,20 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.Request;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 
+import okhttp3.Request;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
 
 
-public class espacioEstacionamiento extends AppCompatActivity {
+public class espaciosEstacionamiento extends AppCompatActivity {
 
     private LinearLayout parkingLayout;
     private OkHttpClient client = new OkHttpClient();
@@ -61,7 +60,7 @@ public class espacioEstacionamiento extends AppCompatActivity {
                                 String estado = jsonObject.getString("estado");
 
                                 // Crear un nuevo botón para cada espacio de estacionamiento
-                                Button button = new Button(espacioEstacionamiento.this);
+                                Button button = new Button(espaciosEstacionamiento.this);
                                 button.setText("Espacio " + idEspacio);
 
                                 // Personalizar el aspecto del botón según el estado del espacio
