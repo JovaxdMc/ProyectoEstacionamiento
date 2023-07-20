@@ -18,6 +18,9 @@
             android:name=".Menu"
             android:exported="false" />
         <activity
+            android:name=".espaciosEstacionamiento"
+            android:exported="false" />
+        <activity
             android:name=".Login"
             android:exported="false" />
         <activity
