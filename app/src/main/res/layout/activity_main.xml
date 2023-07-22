@@ -23,8 +23,8 @@
         android:textSize="25dp"
         android:layout_marginTop="30dp"
         android:gravity="center"
-        android:layout_marginBottom=""
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        />
 
       <RelativeLayout
           android:layout_width="wrap_content"
