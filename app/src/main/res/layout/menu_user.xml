@@ -25,9 +25,10 @@
                 android:layout_height="wrap_content"
                 android:text="Espacios Dispnibles:"
                 android:textColor="@color/white"
-                android:textSize="30dp"
+                android:textSize="25dp"
                 android:textStyle="bold"
-                android:layout_marginTop="160dp"/>
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="200dp"/>
 
             <EditText
                 android:gravity="center"
@@ -36,8 +37,8 @@
                 android:layout_height="50dp"
                 android:hint="0"
                 android:textColorHint="@color/white"
-                android:layout_marginTop="160dp"
-                android:layout_marginLeft="2dp"/>
+                android:layout_marginTop="200dp"
+                android:layout_marginLeft="5dp"/>
 
 
 
@@ -48,10 +49,39 @@
         <ImageView
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:background="@drawable/qr"
+            android:background="@drawable/qr2"
             android:layout_marginLeft="150dp"
-            android:layout_marginTop="250dp"
+            android:layout_marginTop="300dp"
             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Qr"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="420dp"/>
+
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:background="@drawable/panico"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="500dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="115dp"
+            android:layout_marginTop="630dp"
+            android:text="Boton de panico"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="25dp"/>
+
+
 
 
     </RelativeLayout>
