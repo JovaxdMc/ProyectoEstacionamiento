@@ -22,7 +22,7 @@
             android:name=".Menu"
             android:exported="false" />
         <activity
-            android:name=".espaciosEstacionamiento"
+            android:name=".espacioEstacionamiento"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
