@@ -47,6 +47,7 @@
 
 
         <ImageView
+            android:id="@+id/btnQr"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:background="@drawable/qr2"
@@ -65,6 +66,7 @@
 
 
         <ImageView
+            android:id="@+id/btnPanico"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:background="@drawable/panico"
