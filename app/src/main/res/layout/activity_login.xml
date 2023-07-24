@@ -1,14 +1,17 @@
 <RelativeLayout
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/black"
     xmlns:android="http://schemas.android.com/apk/res/android" >
+
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/IVLogo"
-        android:src="@drawable/logincarparkinglogo"
+        android:background="@drawable/boton"
+        android:id="@+id/img"
+        android:src="@drawable/loginlogo"
         android:layout_marginHorizontal="10dp"
         android:layout_marginVertical="10dp"
         />
@@ -16,32 +19,30 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/IVLogo"
-        android:layout_marginHorizontal="10dp"
+        android:id="@+id/Runo"
+        android:layout_below="@+id/img"
+        android:gravity="center_vertical"
         android:background="@drawable/boton"
-        android:id="@+id/RUno"
+        android:layout_margin="10dp"
         >
-
         <TextView
-            android:layout_width="120dp"
-            android:layout_height="50dp"
-            android:id="@+id/TUsu"
-            android:paddingEnd="10dp"
-            android:gravity="center_vertical|end"
-            android:textSize="20dp"
-            android:text="Usuario"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:id="@+id/Tusu"
             android:textColor="@color/white"
+            android:textSize="30dp"
+            android:gravity="center_vertical|end"
+            android:text="Usuario"
             />
-
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:id="@+id/E_Usu"
-            android:layout_toRightOf="@+id/TUsu"
-            android:paddingStart="10dp"
-            android:gravity="center_vertical|start"
+            android:layout_marginStart="5dp"
+            android:layout_toRightOf="@+id/Tusu"
+            android:gravity="center_vertical"
+            android:id="@+id/Eusu"
             android:textColor="@color/white"
-            android:textSize="20dp"
+            android:textSize="30dp"
             />
 
     </RelativeLayout>
@@ -49,47 +50,42 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/RUno"
-        android:layout_marginHorizontal="10dp"
+        android:id="@+id/Rdos"
+        android:layout_below="@+id/Runo"
+        android:gravity="center_vertical"
+        android:layout_margin="10dp"
         android:background="@drawable/boton"
-        android:id="@+id/RDos"
-        android:layout_marginTop="20dp"
         >
-
         <TextView
-            android:layout_width="120dp"
-            android:layout_height="50dp"
-            android:id="@+id/TCont"
-            android:paddingEnd="10dp"
-            android:gravity="center_vertical|end"
-            android:textSize="20dp"
-            android:text="Contraseña"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:id="@+id/Tcont"
             android:textColor="@color/white"
+            android:textSize="30dp"
+            android:gravity="center_vertical|end"
+            android:text="Contraseña"
             />
-
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:id="@+id/E_Cont"
-            android:layout_toRightOf="@+id/TCont"
-            android:paddingStart="10dp"
-            android:gravity="center_vertical|start"
+            android:layout_toRightOf="@+id/Tcont"
+            android:layout_marginStart="5dp"
+            android:gravity="center_vertical"
+            android:id="@+id/Econt"
             android:textColor="@color/white"
-            android:textSize="20dp"
+            android:textSize="30dp"
             />
 
     </RelativeLayout>
 
     <Button
-        android:id="@+id/B_Ingresar"
+        android:id="@+id/Bingresar"
         android:layout_width="115dp"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/RDos"
-        android:layout_marginTop="10dp"
+        android:layout_below="@id/Rdos"
         android:backgroundTint="#ee3a57"
-        android:text="Ingresar"
+        android:text="Agregar"
         android:textColor="@color/black" />
-
 
 </RelativeLayout>
