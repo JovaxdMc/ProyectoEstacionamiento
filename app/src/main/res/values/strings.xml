@@ -44,4 +44,11 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="title_activity_menu_admin">MenuAdmin</string>
+
+    <!-- Nuevas definiciones para el Spinner -->
+    <string-array name="roles">
+        <item>Admin</item>
+        <item>Usuario</item>
+    </string-array>
+    <string name="select_role">Selecciona un rol</string>
 </resources>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -27,8 +28,9 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText id_usuario , ed_Nombre,ed_Apellido,ed_Password,ed_rol,ed_user;
-    Button boton_Agregar,boton_Eliminar,boton_Modificar,boton_Buscar;
+    EditText id_usuario, ed_Nombre, ed_Apellido, ed_Password, ed_user;
+    Spinner spn_rol;
+    Button boton_Agregar, boton_Eliminar, boton_Modificar, boton_Buscar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,25 +38,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         /*EditText*/
-        id_usuario=(EditText) findViewById(R.id.id_usuario);
-        ed_Nombre=(EditText) findViewById(R.id.ed_Nombre);
-        ed_Apellido=(EditText) findViewById(R.id.ed_Apellido);
-        ed_Password=(EditText) findViewById(R.id.ed_Password);
-        ed_rol=(EditText) findViewById(R.id.ed_rol);
-        ed_user=(EditText) findViewById(R.id.ed_user);
+        id_usuario = findViewById(R.id.id_usuario);
+        ed_Nombre = findViewById(R.id.ed_Nombre);
+        ed_Apellido = findViewById(R.id.ed_Apellido);
+        ed_Password = findViewById(R.id.ed_Password);
+        ed_user = findViewById(R.id.ed_user);
+
+        /*Spinner*/
+        spn_rol = findViewById(R.id.spn_rol);
 
         /*Boton*/
-        boton_Agregar=(Button)findViewById(R.id.boton_Agregar);
-        boton_Eliminar=(Button)findViewById(R.id.boton_Eliminar);
-        boton_Modificar=(Button)findViewById(R.id.boton_Modificar);
-        boton_Buscar=(Button)findViewById(R.id.boton_Buscar);
-
+        boton_Agregar = findViewById(R.id.boton_Agregar);
+        boton_Eliminar = findViewById(R.id.boton_Eliminar);
+        boton_Modificar = findViewById(R.id.boton_Modificar);
+        boton_Buscar = findViewById(R.id.boton_Buscar);
 
         boton_Agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Insertar("https://estacionamientohmagdl.000webhostapp.com/Estacionamiento/usuarios/insertar.php");
-
             }
         });
 
@@ -65,19 +67,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         boton_Modificar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Modificar("https://estacionamientohmagdl.000webhostapp.com/Estacionamiento/usuarios/actualizar.php");
-
             }
         });
 
         boton_Buscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Buscar("https://estacionamientohmagdl.000webhostapp.com/Estacionamiento/usuarios/Buscar.php?Id="+id_usuario.getText().toString());
+                Buscar("https://estacionamientohmagdl.000webhostapp.com/Estacionamiento/usuarios/Buscar.php?Id=" + id_usuario.getText().toString());
             }
         });
     }
@@ -93,9 +93,11 @@ public class MainActivity extends AppCompatActivity {
                         ed_Nombre.setText("");
                         ed_Apellido.setText("");
                         ed_Password.setText("");
-                        ed_rol.setText("");
+                        // Obtén el valor seleccionado del Spinner
+                        String selectedRol = spn_rol.getSelectedItem().toString();
+                        // Puedes mostrar un mensaje para verificar que se haya obtenido correctamente
+                        Toast.makeText(MainActivity.this, "Rol seleccionado: " + selectedRol, Toast.LENGTH_SHORT).show();
                         ed_user.setText("");
-
                     }
                 },
                 new Response.ErrorListener() {
@@ -111,8 +113,10 @@ public class MainActivity extends AppCompatActivity {
                 parametros.put("nombre", ed_Nombre.getText().toString());
                 parametros.put("apellidos", ed_Apellido.getText().toString());
                 parametros.put("password", ed_Password.getText().toString());
+                // Obtén el valor seleccionado del Spinner
+                String selectedRol = spn_rol.getSelectedItem().toString();
+                parametros.put("rol", selectedRol);
                 parametros.put("username", ed_user.getText().toString());
-                parametros.put("rol", ed_rol.getText().toString());
                 return parametros;
             }
         };
@@ -132,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
                         ed_Nombre.setText("");
                         ed_Apellido.setText("");
                         ed_Password.setText("");
-                        ed_rol.setText("");
+                        // No se usa ed_rol porque fue reemplazado por el Spinner spn_rol
                         ed_user.setText("");
                     }
                 },
@@ -145,12 +149,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put ("id_usuario", id_usuario.getText().toString());
+                params.put("id_usuario", id_usuario.getText().toString());
                 params.put("nombre", ed_Nombre.getText().toString());
                 params.put("apellidos", ed_Apellido.getText().toString());
                 params.put("password", ed_Password.getText().toString());
-                params.put ("username", ed_user.getText().toString());
-                params.put("rol", ed_rol.getText().toString());
+                // Obtén el valor seleccionado del Spinner
+                String selectedRol = spn_rol.getSelectedItem().toString();
+                params.put("rol", selectedRol);
+                params.put("username", ed_user.getText().toString());
 
                 return params;
             }
@@ -158,7 +164,9 @@ public class MainActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(stringRequest);
     }
+
     /*Eliminar*/
+
     public void Eliminar(String url) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -169,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
                         ed_Nombre.setText("");
                         ed_Apellido.setText("");
                         ed_Password.setText("");
-                        ed_rol.setText("");
+                        // No se usa ed_rol porque fue reemplazado por el Spinner spn_rol
                         ed_user.setText("");
                     }
                 },
@@ -191,8 +199,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*Buscar*/
-    public void Buscar (String url){
-        JsonArrayRequest stringArray=new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
+
+    public void Buscar(String url) {
+        JsonArrayRequest stringArray = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 JSONObject jsonObject = null;
@@ -204,8 +213,7 @@ public class MainActivity extends AppCompatActivity {
                         ed_Nombre.setText(jsonObject.getString("nombre"));
                         ed_Apellido.setText(jsonObject.getString("apellidos"));
                         ed_Password.setText(jsonObject.getString("password"));
-                        ed_rol.setText(jsonObject.getString("rol"));
-
+                        // No se usa ed_rol porque fue reemplazado por el Spinner spn_rol
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                     }
@@ -220,6 +228,6 @@ public class MainActivity extends AppCompatActivity {
         });
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringArray);
-
     }
+
 }

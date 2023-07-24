@@ -17,156 +17,151 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/agregar"
-        android:layout_marginStart="1dp"
-        android:layout_gravity="center"/>
-        <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Administracion de Usuarios"
-        android:layout_gravity="center"
-        android:textStyle="bold"
-        android:textSize="25dp"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:textColor="@color/white"
-        />
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="60dp"
+                android:background="@drawable/agregar"
+                android:layout_marginStart="1dp"
+                android:layout_gravity="center" />
 
-      <RelativeLayout
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent"
-          android:gravity="center">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Administracion de Usuarios"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:textColor="@color/white" />
 
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center">
 
-          <RelativeLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginLeft="30dp"
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:gravity="center">
 
-              android:gravity="center">
+                    <EditText
+                        android:id="@+id/id_usuario"
+                        android:layout_width="300dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/boton"
+                        android:gravity="center"
+                        android:hint="Ingresa el id"
+                        android:textColor="@color/white"
+                        android:textColorHint="#bbbbc4" />
 
-              <EditText
-                  android:id="@+id/id_usuario"
-                  android:layout_width="300dp"
-                  android:layout_height="50dp"
-                  android:background="@drawable/boton"
-                  android:gravity="center"
-                  android:hint="Ingresa el id"
-                  android:textColor="@color/white"
-                  android:textColorHint="#bbbbc4"
+                    <EditText
+                        android:id="@+id/ed_Nombre"
+                        android:layout_width="150dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="70dp"
+                        android:background="@drawable/boton"
+                        android:gravity="center"
+                        android:hint="Nombre"
+                        android:textColor="@color/white"
+                        android:textColorHint="#bbbbc4" />
 
-                  />
+                    <EditText
+                        android:id="@+id/ed_Apellido"
+                        android:layout_width="150dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="160dp"
+                        android:layout_marginTop="70dp"
+                        android:background="@drawable/boton"
+                        android:gravity="center"
+                        android:hint="Apellido"
+                        android:textColor="@color/white"
+                        android:textColorHint="#bbbbc4" />
 
-              <EditText
-                  android:id="@+id/ed_Nombre"
-                  android:layout_width="150dp"
-                  android:layout_height="50dp"
-                  android:layout_marginTop="70dp"
-                  android:background="@drawable/boton"
-                  android:gravity="center"
-                  android:hint="Nombre"
-                  android:textColor="@color/white"
-                  android:textColorHint="#bbbbc4" />
+                    <EditText
+                        android:id="@+id/ed_Password"
+                        android:layout_width="300dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="150dp"
+                        android:background="@drawable/boton"
+                        android:gravity="center"
+                        android:hint="Ingresa el Password"
+                        android:textColor="@color/white"
+                        android:textColorHint="#bbbbc4" />
 
-              <EditText
-                  android:id="@+id/ed_Apellido"
-                  android:layout_width="150dp"
-                  android:layout_height="50dp"
-                  android:layout_marginLeft="160dp"
-                  android:layout_marginTop="70dp"
-                  android:background="@drawable/boton"
-                  android:gravity="center"
-                  android:hint="Apellido"
-                  android:textColor="@color/white"
-                  android:textColorHint="#bbbbc4" />
+                    <EditText
+                        android:id="@+id/ed_user"
+                        android:layout_width="300dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="220dp"
+                        android:background="@drawable/boton"
+                        android:gravity="center"
+                        android:hint="Usuario"
+                        android:textColor="@color/white"
+                        android:textColorHint="#bbbbc4" />
 
-              <EditText
-                  android:id="@+id/ed_Password"
-                  android:layout_width="300dp"
-                  android:layout_height="50dp"
-                  android:layout_marginTop="150dp"
-                  android:background="@drawable/boton"
-                  android:gravity="center"
-                  android:hint="Ingresa el Password"
-                  android:textColor="@color/white"
-                  android:textColorHint="#bbbbc4" />
+                    <!-- Reemplaza el EditText del rol con el Spinner -->
+                    <Spinner
+                        android:id="@+id/spn_rol"
+                        android:layout_width="300dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="290dp"
+                        android:background="@drawable/boton"
+                        android:gravity="center"
+                        android:entries="@array/roles"
+                        android:spinnerMode="dropdown"
+                        android:prompt="@string/select_role"
+                        android:textColor="@color/white"
+                        android:textColorHint="#bbbbc4" />
 
-              <EditText
-                  android:id="@+id/ed_user"
-                  android:layout_width="300dp"
-                  android:layout_height="50dp"
-                  android:layout_marginTop="220dp"
-                  android:background="@drawable/boton"
-                  android:gravity="center"
-                  android:hint="Usuario"
-                  android:textColor="@color/white"
-                  android:textColorHint="#bbbbc4" />
+                    <Button
+                        android:id="@+id/boton_Agregar"
+                        android:layout_width="115dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="350dp"
+                        android:backgroundTint="#ee3a57"
+                        android:text="Agregar"
+                        android:textColor="@color/black" />
 
-              <EditText
-                  android:id="@+id/ed_rol"
-                  android:layout_width="300dp"
-                  android:layout_height="50dp"
-                  android:layout_marginTop="290dp"
-                  android:background="@drawable/boton"
-                  android:gravity="center"
-                  android:hint="Ingrega el rol"
-                  android:textColor="@color/white"
-                  android:textColorHint="#bbbbc4" />
+                    <Button
+                        android:id="@+id/boton_Eliminar"
+                        android:layout_width="115dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="420dp"
+                        android:backgroundTint="#ee3a57"
+                        android:text="Eliminar"
+                        android:textColor="@color/black" />
 
-              <Button
-                  android:id="@+id/boton_Agregar"
-                  android:layout_width="115dp"
-                  android:layout_height="50dp"
-                  android:layout_marginLeft="20dp"
-                  android:layout_marginTop="350dp"
-                  android:backgroundTint="#ee3a57"
-                  android:text="Agregar"
-                  android:textColor="@color/black" />
+                    <Button
+                        android:id="@+id/boton_Modificar"
+                        android:layout_width="115dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="150dp"
+                        android:layout_marginTop="350dp"
+                        android:backgroundTint="#ee3a57"
+                        android:text="Modificar"
+                        android:textColor="@color/black" />
 
-              <Button
-                  android:id="@+id/boton_Eliminar"
-                  android:layout_width="115dp"
-                  android:layout_height="50dp"
-                  android:layout_marginLeft="20dp"
-                  android:layout_marginTop="420dp"
-                  android:backgroundTint="#ee3a57"
-                  android:text="Eliminar"
-                  android:textColor="@color/black" />
+                    <Button
+                        android:id="@+id/boton_Buscar"
+                        android:layout_width="110dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="150dp"
+                        android:layout_marginTop="420dp"
+                        android:backgroundTint="#ee3a57"
+                        android:text="Buscar"
+                        android:textColor="@color/black" />
 
-              <Button
-                  android:id="@+id/boton_Modificar"
-                  android:layout_width="115dp"
-                  android:layout_height="50dp"
-                  android:layout_marginLeft="150dp"
-                  android:layout_marginTop="350dp"
-                  android:backgroundTint="#ee3a57"
-                  android:text="Modificar"
-                  android:textColor="@color/black" />
+                </RelativeLayout>
 
-              <Button
-                  android:id="@+id/boton_Buscar"
-                  android:layout_width="110dp"
-                  android:layout_height="50dp"
-                  android:layout_marginLeft="150dp"
-                  android:layout_marginTop="420dp"
-                  android:backgroundTint="#ee3a57"
-                  android:text="Buscar"
-                  android:textColor="@color/black" />
-
-          </RelativeLayout>
-
-      </RelativeLayout>
-
+            </RelativeLayout>
 
         </LinearLayout>
 
-
-
     </ScrollView>
-
 
 </LinearLayout>
