@@ -31,10 +31,9 @@ public class Menu extends AppCompatActivity {
         btnPanico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String phoneNumber = "+527751500728";
-                Intent intent = new Intent(Intent.ACTION_CALL);
-                intent.setData(Uri.parse("tel:" + phoneNumber));
-                startActivity(intent);
+                String numeroTelefono = "7752383016"; // Reemplaza esto con el número que desees llamar
+                Intent intentLlamada = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + numeroTelefono));
+                startActivity(intentLlamada);
 
             }
         });
