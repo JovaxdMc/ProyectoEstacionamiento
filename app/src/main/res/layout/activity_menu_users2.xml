@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Menu"
+    tools:context=".MenuUsers2"
     android:background="#1E1E1E">
 
     <RelativeLayout
@@ -12,7 +12,7 @@
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:background="@drawable/logincarparkinglogo"
+            android:background="@drawable/loginlogo"
             android:layout_marginLeft="130dp"
             />
 

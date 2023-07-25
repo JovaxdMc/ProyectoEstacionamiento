@@ -53,7 +53,7 @@ public class Login extends AppCompatActivity {
                                         Intent intent = new Intent(Login.this, MenuAdmin.class);
                                         startActivity(intent);
                                     } else if (rol.equalsIgnoreCase("Usuario")) {
-                                        Intent intent = new Intent(Login.this, Menu.class);
+                                        Intent intent = new Intent(Login.this, MenuUsers2.class);
                                         startActivity(intent);
                                     }
                                     // Finalizar la actividad actual (opcional, dependiendo de la lógica de la app)
