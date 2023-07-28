@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -105,31 +106,39 @@ public class espacioEstacionamiento extends AppCompatActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ImageView imageView;
+            View gridViewItem;
             if (convertView == null) {
-                imageView = new ImageView(espacioEstacionamiento.this);
-                imageView.setLayoutParams(new GridView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 200));
-                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                imageView.setPadding(8, 8, 8, 8);
+                // Inflar el diseño personalizado para cada elemento del GridView
+                gridViewItem = getLayoutInflater().inflate(R.layout.grid_item_layout, parent, false);
             } else {
-                imageView = (ImageView) convertView;
+                gridViewItem = convertView;
             }
+
+            // Obtener el ImageView y
+            // el TextView del diseño personalizado
+            ImageView imageView = gridViewItem.findViewById(R.id.imageViewParking);
+            TextView textView = gridViewItem.findViewById(R.id.textViewPlaceNumber);
 
             // Obtener el estado del espacio y cargar la imagen correspondiente
             try {
                 JSONObject jsonObject = jsonArray.getJSONObject(position);
                 String estado = jsonObject.getString("estado");
+                int idEspacio = jsonObject.getInt("id_espacio");
 
                 if (estado.equals("ocupado")) {
                     imageView.setImageResource(R.drawable.espacio_ocupado); // Reemplaza 'espacio_ocupado' con el nombre de tu recurso de imagen/icono para espacio ocupado
                 } else {
                     imageView.setImageResource(R.drawable.espacio_libre); // Reemplaza 'espacio_libre' con el nombre de tu recurso de imagen/icono para espacio libre
                 }
+
+                // Mostrar el número de lugar debajo de la imagen
+                textView.setText("P-" + idEspacio); // Aquí también puedes personalizar el formato del número de lugar según tus necesidades
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            return imageView;
+            return gridViewItem;
         }
     }
 }
