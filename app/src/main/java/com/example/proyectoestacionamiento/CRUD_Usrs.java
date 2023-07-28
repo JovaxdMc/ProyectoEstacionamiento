@@ -35,7 +35,7 @@ public class CRUD_Usrs extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_crud_usrs);
 
         /*EditText*/
         id_usuario = findViewById(R.id.id_usuario);
