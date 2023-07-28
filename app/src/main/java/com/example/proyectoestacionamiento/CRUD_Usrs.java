@@ -26,7 +26,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class CRUD_Usrs extends AppCompatActivity {
 
     EditText id_usuario, ed_Nombre, ed_Apellido, ed_Password, ed_user;
     Spinner spn_rol;
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                         // Obtén el valor seleccionado del Spinner
                         String selectedRol = spn_rol.getSelectedItem().toString();
                         // Puedes mostrar un mensaje para verificar que se haya obtenido correctamente
-                        Toast.makeText(MainActivity.this, "Rol seleccionado: " + selectedRol, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CRUD_Usrs.this, "Rol seleccionado: " + selectedRol, Toast.LENGTH_SHORT).show();
                         ed_user.setText("");
                     }
                 },
