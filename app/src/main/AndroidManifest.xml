@@ -16,9 +16,14 @@
         android:theme="@style/Theme.ProyectoEstacionamiento"
         tools:targetApi="31">
         <activity
-            android:name=".MenuUsers2"
+            android:name=".Temperatura"
             android:exported="false" />
-        <!-- Define la actividad principal (launch activity) -->
+        <activity
+            android:name=".Ventiladores"
+            android:exported="false" />
+        <activity
+            android:name=".MenuUsers2"
+            android:exported="false" /> <!-- Define la actividad principal (launch activity) -->
         <activity
             android:name=".Login"
             android:exported="true">

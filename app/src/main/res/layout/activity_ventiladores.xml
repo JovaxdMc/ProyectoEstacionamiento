@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Ventiladores"
+    android:background="#1E1E1E">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ventiladores"
+            android:textSize="60dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+
+        <LinearLayout
+            android:layout_marginLeft="30dp"
+            android:id="@+id/btnOn"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:background="#03A9F4"
+            android:layout_marginTop="150dp"
+            >
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="On"
+                android:textSize="50dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="250dp"
+            android:id="@+id/btnOf"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:background="#F40327"
+            android:layout_marginTop="150dp"
+            >
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="OFF"
+                android:textSize="50dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Velocidad"
+            android:layout_marginTop="300dp"
+            android:textColor="@color/white"
+            android:textStyle="italic"
+            android:gravity="center"
+            android:textSize="36dp"/>
+
+
+        <LinearLayout
+            android:layout_marginLeft="30dp"
+            android:id="@+id/Diez"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="#353535"
+            android:layout_marginTop="380dp"
+            >
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="10%"
+                android:textSize="50dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="150dp"
+            android:id="@+id/Treinta"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="#353535"
+            android:layout_marginTop="380dp"
+            >
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="30%"
+                android:textSize="50dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="270dp"
+            android:id="@+id/cincuenta"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="#353535"
+            android:layout_marginTop="380dp"
+            >
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="50%"
+                android:textSize="50dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="30dp"
+            android:id="@+id/ochenta"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="#353535"
+            android:layout_marginTop="500dp"
+            >
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="80%"
+                android:textSize="50dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="150dp"
+            android:id="@+id/cien"
+            android:layout_width="130dp"
+            android:layout_height="100dp"
+            android:background="#353535"
+            android:layout_marginTop="500dp"
+            >
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="100%"
+                android:textSize="50dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                />
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+</LinearLayout>

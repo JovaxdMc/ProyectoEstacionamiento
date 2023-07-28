@@ -19,12 +19,32 @@ public class MenuAdmin extends AppCompatActivity {
         setContentView(R.layout.activity_menu_admin);
 
         marco04=(LinearLayout) findViewById(R.id.marco04);
+        marco01=(LinearLayout) findViewById(R.id.marco01);
+        marco02=(LinearLayout) findViewById(R.id.marco02);
+        marco03=(LinearLayout) findViewById(R.id.marco03);
 
 
         marco04.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MenuAdmin.this, espacioEstacionamiento.class);
+                startActivity(intent);
+
+            }
+        });
+
+        marco01.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MenuAdmin.this, Ventiladores.class);
+                startActivity(intent);
+
+            }
+        });
+        marco02.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MenuAdmin.this, Temperatura.class);
                 startActivity(intent);
 
             }
