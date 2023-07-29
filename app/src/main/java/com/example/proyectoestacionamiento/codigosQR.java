@@ -99,7 +99,7 @@ public class codigosQR extends AppCompatActivity {
             String nombre = usuarioObject.getString("nombre");
             String apellidos = usuarioObject.getString("apellidos");
             String username = usuarioObject.getString("username");
-            String password = usuarioObject.getString("passwword");
+            String password = usuarioObject.getString("password");
             String rol = usuarioObject.getString("rol");
             // ... Obtén los demás campos que necesites
 

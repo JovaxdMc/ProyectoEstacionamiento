@@ -31,8 +31,9 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="200dp"/>
 
-            <EditText
+            <TextView
                 android:gravity="center"
+                android:id="@+id/cantidadLugares"
                 android:background="@drawable/boton2"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
