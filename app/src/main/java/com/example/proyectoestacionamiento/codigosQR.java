@@ -1,6 +1,5 @@
 package com.example.proyectoestacionamiento;
 
-import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
@@ -10,19 +9,22 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class codigosQR extends AppCompatActivity {
+    private PrefManager prefManager;
     private EditText idEditText;
     private Button generateButton;
     private ImageView qrImageView;
@@ -36,6 +38,7 @@ public class codigosQR extends AppCompatActivity {
         generateButton = findViewById(R.id.generateButton);
         qrImageView = findViewById(R.id.qrImageView);
 
+        prefManager = new PrefManager(this);
         generateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,76 +49,84 @@ public class codigosQR extends AppCompatActivity {
 
     private void generateQRCode() {
         String id = idEditText.getText().toString();
-        String data = retrieveDataFromDatabase(id);
 
-        if (data != null) {
-            try {
-                QRCodeWriter qrCodeWriter = new QRCodeWriter();
-                BitMatrix bitMatrix = qrCodeWriter.encode(data, BarcodeFormat.QR_CODE, 200, 200);
 
-                int width = bitMatrix.getWidth();
-                int height = bitMatrix.getHeight();
-                Bitmap qrBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+        // Obtener los datos del usuario desde las preferencias
+        String id_u = prefManager.getUserId();
+        System.out.println("idusr: "+id_u);
+        retrieveDataFromAPI(id_u);
+    }
 
-                for (int x = 0; x < width; x++) {
-                    for (int y = 0; y < height; y++) {
-                        qrBitmap.setPixel(x, y, bitMatrix.get(x, y) ? getResources().getColor(android.R.color.black) : getResources().getColor(android.R.color.white));
+    private void retrieveDataFromAPI(String id) {
+        // Aquí debes modificar la URL para apuntar a tu API y la ruta adecuada para obtener los datos del usuario
+        String apiUrl = "https://estacionamientohmagdl.000webhostapp.com/Estacionamiento/usuarios/usuario.php?operacion=buscar&id_usuario="+id;
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, apiUrl, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // Procesa la respuesta JSON y genera el código QR
+                        try {
+                            String data = processApiResponse(response);
+                            System.out.println(data);
+                            generateQRCodeBitmap(data);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Maneja el error de la solicitud HTTP
+                        error.printStackTrace();
+                    }
+                });
 
-                qrImageView.setImageBitmap(qrBitmap);
-            } catch (WriterException e) {
-                e.printStackTrace();
-            }
+        // Agrega la solicitud a la cola de Volley
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(request);
+    }
+
+    private String processApiResponse(JSONObject jsonObject) throws JSONException {
+        // Verifica si la propiedad "usuario" está presente en el objeto JSON
+        if (jsonObject.has("usuario")) {
+            // Obtiene el objeto "usuario" del JSON
+            JSONObject usuarioObject = jsonObject.getJSONObject("usuario");
+
+            // Obtén los campos específicos del usuario del objeto "usuario"
+            String id = usuarioObject.getString("id_usuario");
+            String nombre = usuarioObject.getString("nombre");
+            String apellidos = usuarioObject.getString("apellidos");
+            String username = usuarioObject.getString("username");
+            String password = usuarioObject.getString("passwword");
+            String rol = usuarioObject.getString("rol");
+            // ... Obtén los demás campos que necesites
+
+            return "ID: " + id + "\nNombre: " + nombre + "\nApellidos: " + apellidos + "\nUsername: " + username + "\nRol: " + rol;
+        } else {
+            return "No se encontró el objeto de usuario en la respuesta JSON";
         }
     }
 
-    private String retrieveDataFromDatabase(String id) {
-        String url = "jdbc:mysql://localhost:3306/id21048854_estacionamiento";
-        String username = "id21048854_adm1420014414";
-        String password = "Yihh123456.";
-
-        Connection conn = null;
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
-
+    private void generateQRCodeBitmap(String data) {
         try {
-            conn = DriverManager.getConnection(url, username, password);
-            String query = "SELECT * FROM usuarios WHERE id = ?";
-            statement = conn.prepareStatement(query);
-            statement.setString(1, id);
-            resultSet = statement.executeQuery();
+            QRCodeWriter qrCodeWriter = new QRCodeWriter();
+            BitMatrix bitMatrix = qrCodeWriter.encode(data, BarcodeFormat.QR_CODE, 200, 200);
 
-            if (resultSet.next()) {
-                // Aquí debes obtener los campos específicos de tu base de datos
-                String campo1 = resultSet.getString("nombre");
-                String campo2 = resultSet.getString("apellidos");
-                String campo3 = resultSet.getString("username");
-                String campo4 = resultSet.getString("rol");
-                // ... Obtén los demás campos que necesites
+            int width = bitMatrix.getWidth();
+            int height = bitMatrix.getHeight();
+            Bitmap qrBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
 
-                return "ID: " + id + "\nCampo1: " + campo1 + "\nCampo2: " + campo2 + "\nCampo3: " + campo3 + "\nCampo4: " + campo4;
-            } else {
-                return "No se encontraron datos para el ID: " + id;
+            for (int x = 0; x < width; x++) {
+                for (int y = 0; y < height; y++) {
+                    qrBitmap.setPixel(x, y, bitMatrix.get(x, y) ? getResources().getColor(android.R.color.black) : getResources().getColor(android.R.color.white));
+                }
             }
-        } catch (SQLException e) {
+
+            qrImageView.setImageBitmap(qrBitmap);
+        } catch (WriterException e) {
             e.printStackTrace();
-            return "Error al obtener los datos de la base de datos";
-        } finally {
-            // Cerrar los recursos
-            try {
-                if (resultSet != null) {
-                    resultSet.close();
-                }
-                if (statement != null) {
-                    statement.close();
-                }
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
     }
 }
