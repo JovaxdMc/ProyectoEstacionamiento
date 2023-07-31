@@ -25,7 +25,6 @@ import org.json.JSONObject;
 
 public class codigosQR extends AppCompatActivity {
     private PrefManager prefManager;
-    private EditText idEditText;
     private Button generateButton;
     private ImageView qrImageView;
 
@@ -34,7 +33,6 @@ public class codigosQR extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_codigos_qr);
 
-        idEditText = findViewById(R.id.idEditText);
         generateButton = findViewById(R.id.generateButton);
         qrImageView = findViewById(R.id.qrImageView);
 
@@ -48,8 +46,6 @@ public class codigosQR extends AppCompatActivity {
     }
 
     private void generateQRCode() {
-        String id = idEditText.getText().toString();
-
 
         // Obtener los datos del usuario desde las preferencias
         String id_u = prefManager.getUserId();

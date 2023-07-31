@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/fdo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="16dp"
@@ -8,19 +9,16 @@
     android:paddingBottom="16dp"
     tools:context=".CRUD_Usrs">
 
-    <EditText
-        android:id="@+id/idEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Ingrese el ID" />
-
     <Button
         android:id="@+id/generateButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/idEditText"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        android:text="Generar Código QR" />
+        android:backgroundTint="#3E7A8B"
+        android:text="Generar QR"
+        android:typeface="serif"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textSize="30dp" />
 
     <ImageView
         android:layout_width="match_parent"
