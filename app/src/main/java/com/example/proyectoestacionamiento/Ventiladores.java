@@ -51,13 +51,13 @@ public class Ventiladores extends AppCompatActivity {
         btnOn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Modificar("https://estacionamientohmagdl.000webhostapp.com/Estacionamiento/Actuadores/ventiladores.php");
+                Modificar2("https://estacionamientohmagdl.000webhostapp.com/Estacionamiento/Actuadores/ventiladores.php");
             }
         });
         btnOf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Modificar("https://estacionamientohmagdl.000webhostapp.com/Estacionamiento/Actuadores/ventiladores.php");
+                Modificar3("https://estacionamientohmagdl.000webhostapp.com/Estacionamiento/Actuadores/ventiladores.php");
             }
         });
 
@@ -83,8 +83,6 @@ public class Ventiladores extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("velocidad", Vel.getText().toString());
-                params.put("estado", textOn.getText().toString());
-                params.put("estado", textOf.getText().toString());
 
 
                 return params;
@@ -94,6 +92,61 @@ public class Ventiladores extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
+    public void Modificar2(String url) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(getApplicationContext(), "Registro actualizado", Toast.LENGTH_LONG).show();
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("estado", textOn.getText().toString());
+
+
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        requestQueue.add(stringRequest);
+    }
+
+    public void Modificar3(String url) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(getApplicationContext(), "Registro actualizado", Toast.LENGTH_LONG).show();
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("estado", textOf.getText().toString());
+
+
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        requestQueue.add(stringRequest);
+    }
 
 
 
