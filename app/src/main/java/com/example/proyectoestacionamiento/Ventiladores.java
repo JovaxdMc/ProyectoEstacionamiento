@@ -3,6 +3,7 @@ package com.example.proyectoestacionamiento;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,7 @@ import com.android.volley.toolbox.Volley;
 
 import java.util.HashMap;
 import java.util.Map;
+
 
 public class Ventiladores extends AppCompatActivity {
 
@@ -40,6 +42,25 @@ public class Ventiladores extends AppCompatActivity {
         textOn = findViewById(R.id.textOn);
         textOf = findViewById(R.id.textOf);
 
+        Vel.setFilters(new InputFilter[]{(source, start, end, dest, dstart, dend) -> {
+            String newValue = dest.toString().substring(0, dstart) + source.toString() + dest.toString().substring(dend);
+            if (newValue.isEmpty() || newValue.equals("-")) {
+                return null;
+            }
+            try {
+                if (newValue.equals("0")) {
+                    return null;  // Allow single zero
+                }
+                if (newValue.startsWith("00")) {
+                    return "";  // Prevent multiple leading zeros
+                }
+                int input = Integer.parseInt(newValue);
+                return (input >= 0 && input <= 100) ? null : "";
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                return "";
+            }
+        }});
 
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,15 +75,15 @@ public class Ventiladores extends AppCompatActivity {
                 Modificar2("https://estacionamientohmagdl.000webhostapp.com/Estacionamiento/Actuadores/ventiladores.php");
             }
         });
+
         btnOf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Modificar3("https://estacionamientohmagdl.000webhostapp.com/Estacionamiento/Actuadores/ventiladores.php");
             }
         });
-
-
     }
+
 
     public void Modificar(String url) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
