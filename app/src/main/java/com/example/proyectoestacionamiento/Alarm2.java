@@ -3,6 +3,7 @@ package com.example.proyectoestacionamiento;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,6 +27,9 @@ public class Alarm2 extends AppCompatActivity {
     LinearLayout btnOn, btnOf;
     TextView textOn, textOf;
 
+    private Handler handler = new Handler();
+    private Runnable updateRunnable;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +38,6 @@ public class Alarm2 extends AppCompatActivity {
         btnOf = findViewById(R.id.btnOf);
         textOn = findViewById(R.id.textOn);
         textOf = findViewById(R.id.textOf);
-
 
         btnOn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,14 +53,29 @@ public class Alarm2 extends AppCompatActivity {
             }
         });
 
+        updateRunnable = new Runnable() {
+            @Override
+            public void run() {
+                obtenerEstadoAlarma();
+                handler.postDelayed(this, 3000); // Schedule the runnable again after 3000 milliseconds (3 seconds)
+            }
+        };
+
+        handler.post(updateRunnable); // Start the initial runnable
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacks(updateRunnable); // Stop the periodic updates
+    }
+
     public void Modificar2(String url) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(getApplicationContext(), "Registro actualizado", Toast.LENGTH_LONG).show();
-                        // Después de actualizar, obtener y mostrar los nuevos datos
                         obtenerEstadoAlarma();
                     }
                 },
@@ -70,8 +88,7 @@ public class Alarm2 extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("estado", "On"); // Cambiar "On" por el valor deseado
-
+                params.put("estado", "On"); // Change "On" to the desired value
                 return params;
             }
         };
@@ -85,7 +102,6 @@ public class Alarm2 extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(getApplicationContext(), "Registro actualizado", Toast.LENGTH_LONG).show();
-                        // Después de actualizar, obtener y mostrar los nuevos datos
                         obtenerEstadoAlarma();
                     }
                 },
@@ -98,8 +114,7 @@ public class Alarm2 extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("estado", "Off"); // Cambiar "Off" por el valor deseado
-
+                params.put("estado", "Off"); // Change "Off" to the desired value
                 return params;
             }
         };
@@ -108,28 +123,20 @@ public class Alarm2 extends AppCompatActivity {
     }
 
     private void obtenerEstadoAlarma() {
-        // URL de la API para obtener los datos del ventilador
         String url = "https://estacionamientohmagdl.000webhostapp.com/Estacionamiento/Actuadores/Alarma.php";
-
-        // Crear una nueva solicitud POST con Volley
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // Procesar la respuesta JSON y actualizar las vistas con los datos del ventilador
                         try {
                             JSONObject datosJson = new JSONObject(response);
                             String estado = datosJson.getString("estado");
-
-                            // Actualizar las vistas con los datos obtenidos
-
-
                             if (estado.equals("On")) {
-                                textOn.setTextColor(getResources().getColor(R.color.colorOn)); // Cambia R.color.colorOn por el color deseado
-                                textOf.setTextColor(getResources().getColor(R.color.colorOff)); // Cambia R.color.colorDefault por el color deseado
+                                textOn.setTextColor(getResources().getColor(R.color.colorOn));
+                                textOf.setTextColor(getResources().getColor(R.color.colorOff));
                             } else {
-                                textOn.setTextColor(getResources().getColor(R.color.colorOff)); // Cambia R.color.colorDefault por el color deseado
-                                textOf.setTextColor(getResources().getColor(R.color.colorOn)); // Cambia R.color.colorOff por el color deseado
+                                textOn.setTextColor(getResources().getColor(R.color.colorOff));
+                                textOf.setTextColor(getResources().getColor(R.color.colorOn));
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -139,20 +146,16 @@ public class Alarm2 extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // Manejar el error en caso de que la solicitud no se pueda completar
                         Toast.makeText(getApplicationContext(), "Error al obtener los datos del ventilador", Toast.LENGTH_LONG).show();
                     }
                 }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("obtener_datos", ""); // Agregar el parámetro para indicar que deseas obtener los datos
-
+                params.put("obtener_datos", "");
                 return params;
             }
         };
-
-        // Agregar la solicitud a la cola de Volley para ejecutarla
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(request);
     }
