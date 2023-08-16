@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 public class MenuAdmin extends AppCompatActivity {
 
 
-    LinearLayout marco01,marco02,marco03,marco04;
+    LinearLayout marco01,marco02,marco03,marco04,marco05;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,7 @@ public class MenuAdmin extends AppCompatActivity {
         marco01=(LinearLayout) findViewById(R.id.marco01);
         marco02=(LinearLayout) findViewById(R.id.marco02);
         marco03=(LinearLayout) findViewById(R.id.marco03);
+        marco05=(LinearLayout) findViewById(R.id.marco05);
 
 
         marco04.setOnClickListener(new View.OnClickListener() {
@@ -32,6 +33,15 @@ public class MenuAdmin extends AppCompatActivity {
 
             }
         });
+        marco05.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MenuAdmin.this, Alarm2.class);
+                startActivity(intent);
+
+            }
+        });
+
 
         marco01.setOnClickListener(new View.OnClickListener() {
             @Override

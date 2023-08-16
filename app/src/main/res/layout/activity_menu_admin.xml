@@ -84,6 +84,22 @@
                 android:background="@drawable/informe"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/marco05"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@color/white"
+            android:layout_marginTop="567dp"
+            android:layout_marginLeft="140dp"
+            android:orientation="horizontal" >
+
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/sirena10"/>
+        </LinearLayout>
+
 
 
 
