@@ -23,6 +23,9 @@
         android:theme="@style/Theme.ProyectoEstacionamiento"
         tools:targetApi="31">
         <activity
+            android:name=".Pluma"
+            android:exported="false" />
+        <activity
             android:name=".Alarm2"
             android:exported="false" />
         <activity
@@ -45,7 +48,7 @@
             android:exported="false" />
         <activity
             android:name=".Login"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".MenuAdmin"
             android:exported="false" />

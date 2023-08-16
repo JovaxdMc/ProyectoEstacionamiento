@@ -48,9 +48,6 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:background="@drawable/coche1"/>
-
-
-
         </LinearLayout>
 
         <LinearLayout
@@ -90,7 +87,7 @@
             android:layout_height="150dp"
             android:background="@color/white"
             android:layout_marginTop="567dp"
-            android:layout_marginLeft="140dp"
+            android:layout_marginLeft="225dp"
             android:orientation="horizontal" >
 
 
@@ -98,6 +95,21 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:background="@drawable/sirena10"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/marco06"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@color/white"
+            android:layout_marginTop="567dp"
+            android:layout_marginLeft="50dp"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/guardia"/>
         </LinearLayout>
 
 
