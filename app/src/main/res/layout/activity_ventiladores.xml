@@ -38,6 +38,7 @@
                 android:layout_gravity="center"
                 android:text="On"
                 android:textSize="50dp"
+                android:hint="On"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 />
@@ -50,7 +51,8 @@
             android:layout_height="120dp"
             android:background="#F40327"
             android:layout_marginTop="150dp"
-            >
+            android:orientation="horizontal">
+
             <TextView
                 android:id="@+id/textOf"
                 android:layout_width="match_parent"
@@ -58,10 +60,13 @@
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:text="OFF"
+                android:hint="OFF"
                 android:textSize="50dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 />
+
+
         </LinearLayout>
         <TextView
             android:layout_width="match_parent"
