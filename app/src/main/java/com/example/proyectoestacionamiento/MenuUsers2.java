@@ -26,6 +26,8 @@ public class MenuUsers2 extends AppCompatActivity {
     private PrefManager prefManager;
     ImageView btnPanico,btnQr;
     TextView usrsData,lugares;
+    TextView btnSalir;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,7 @@ public class MenuUsers2 extends AppCompatActivity {
         btnPanico=(ImageView) findViewById(R.id.btnPanico);
         btnQr=(ImageView) findViewById(R.id.btnQr);
         usrsData=(TextView) findViewById(R.id.usrDatos);
-
+        btnSalir=(TextView) findViewById(R.id.btnSalir);
         lugares=(TextView) findViewById(R.id.cantidadLugares);
         obtenerNumeroEspaciosDisponibles();
 
@@ -54,6 +56,15 @@ public class MenuUsers2 extends AppCompatActivity {
                 Intent intent = new Intent(MenuUsers2.this, codigosQR.class);
                 startActivity(intent);
 
+            }
+        });
+
+        btnSalir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MenuUsers2.this, Login.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Clear the activity stack
+                startActivity(intent);
             }
         });
 
