@@ -12,15 +12,20 @@ import android.os.Handler;
 import android.widget.Toast;
 
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MenuUsers2 extends AppCompatActivity {
     private PrefManager prefManager;
@@ -74,6 +79,8 @@ public class MenuUsers2 extends AppCompatActivity {
                 String numeroTelefono = "7752383016"; // Reemplaza esto con el número que desees llamar
                 Intent intentLlamada = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + numeroTelefono));
 
+                Modificar2("https://estacionamientohmagdl.000webhostapp.com/Estacionamiento/Actuadores/Alarma.php");
+
                 // Intenta realizar la llamada telefónica
                 try {
                     startActivity(intentLlamada);
@@ -81,20 +88,8 @@ public class MenuUsers2 extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-
-                // Cambia el estado en la base de datos a "on" por 20 segundos
-                actualizarEstadoAlarma("on");
-
-                // Espera 20 segundos antes de cambiar el estado de nuevo a "off"
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        actualizarEstadoAlarma("off");
-                    }
-                }, 20000); // 20 segundos en milisegundos
             }
         });
-
 
     }
 
@@ -128,48 +123,31 @@ public class MenuUsers2 extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(request);
     }
-    private void actualizarEstadoAlarma(final String nuevoEstado) {
-        String url = "https://estacionamientohmagdl.000webhostapp.com/Estacionamiento/Actuadores/Alarma.php"; // Reemplaza con la URL de tu API
-
-        JSONObject requestBody = new JSONObject();
-        try {
-            requestBody.put("estado", nuevoEstado);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, requestBody,
-                new Response.Listener<JSONObject>() {
+    public void Modificar2(String url) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONObject response) {
-                        // Verificar si la actualización fue exitosa
-                        try {
-                            boolean actualizacionExitosa = response.getBoolean("success");
-                            if (actualizacionExitosa) {
-                                mostrarMensaje("Estado actualizado a " + nuevoEstado);
-                            } else {
-                                mostrarMensaje("No se pudo actualizar el estado");
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                    public void onResponse(String response) {
+                        Toast.makeText(getApplicationContext(), "Alarma encendida", Toast.LENGTH_LONG).show();
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // Manejar el error en caso de que la solicitud no se pueda completar
-                        mostrarMensaje("Error al comunicarse con el servidor");
+                        Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
                     }
-                });
-
-        RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(request);
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("estado", "On"); // Change "On" to the desired value
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        requestQueue.add(stringRequest);
     }
 
-    private void mostrarMensaje(String mensaje) {
-        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
-    }
 
 
 
