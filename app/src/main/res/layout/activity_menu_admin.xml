@@ -7,6 +7,18 @@
     tools:context=".MenuAdmin"
     android:background="#1E1E1E">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -123,10 +135,27 @@
                 android:background="@drawable/guardia"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/marco08"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@color/white"
+            android:layout_marginTop="730dp"
+            android:layout_marginLeft="50dp"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/usuario"/>
+        </LinearLayout>
+
 
 
 
 
     </RelativeLayout>
+        </ScrollView>
+    </LinearLayout>
 
 </LinearLayout>

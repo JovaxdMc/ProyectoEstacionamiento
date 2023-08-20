@@ -90,9 +90,7 @@ public class MenuUsers2 extends AppCompatActivity {
 
             }
         });
-
     }
-
     private void obtenerNumeroEspaciosDisponibles() {
         // URL de la API
         String url = "https://estacionamientohmagdl.000webhostapp.com/Estacionamiento/Lugares/lugares.php?endpoint=contar_espacios";

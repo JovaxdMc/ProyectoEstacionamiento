@@ -13,7 +13,7 @@ import android.widget.TextView;
 public class MenuAdmin extends AppCompatActivity {
 
 
-    LinearLayout marco01,marco02,marco03,marco04,marco05,marco06;
+    LinearLayout marco01,marco02,marco03,marco04,marco05,marco06,marco08;
     TextView btnSalir;
 
     @Override
@@ -27,6 +27,7 @@ public class MenuAdmin extends AppCompatActivity {
         marco03=(LinearLayout) findViewById(R.id.marco03);
         marco05=(LinearLayout) findViewById(R.id.marco05);
         marco06=(LinearLayout) findViewById(R.id.marco06);
+        marco08=(LinearLayout) findViewById(R.id.marco08);
         btnSalir=(TextView) findViewById(R.id.btnSalir);
 
 
@@ -79,6 +80,14 @@ public class MenuAdmin extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MenuAdmin.this, Login.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Clear the activity stack
+                startActivity(intent);
+            }
+        });
+
+        marco08.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MenuAdmin.this, Users.class);
                 startActivity(intent);
             }
         });
