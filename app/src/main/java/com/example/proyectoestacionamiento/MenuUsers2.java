@@ -32,7 +32,8 @@ public class MenuUsers2 extends AppCompatActivity {
     ImageView btnPanico,btnQr;
     TextView usrsData,lugares;
     TextView btnSalir;
-
+    private Handler handler;
+    private Runnable runnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,20 @@ public class MenuUsers2 extends AppCompatActivity {
         String nombre = prefManager.getNombre();
         String apellidos = prefManager.getApellidos();
 
+        handler = new Handler();
+
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                // Coloca aquí el código que deseas ejecutar cada 3 segundos
+                // Por ejemplo, puedes llamar a tu función aquí
+                obtenerNumeroEspaciosDisponibles();
+                handler.postDelayed(this, 3000); // Ejecuta nuevamente el Runnable después de 3 segundos
+            }
+        };
+
+        // Inicia la ejecución inicial del Runnable
+        handler.postDelayed(runnable, 3000);
         // Mostrar los datos en la interfaz de usuario
         usrsData.setText("Bienvenido "+nombre+" "+apellidos);
         btnQr.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +110,7 @@ public class MenuUsers2 extends AppCompatActivity {
 
     private void obtenerNumeroEspaciosDisponibles() {
         // URL de la API
-        String url = "https://estacionamientohmagdl.000webhostapp.com/Estacionamiento/Lugares/lugares.php?endpoint=contar_espacios";
+        String url = "https://estacionamientohmagdl.000webhostapp.com/Estacionamiento/Lugares/lugares.php?accion=contar_espacios";
 
         // Crear una nueva solicitud GET con Volley
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
