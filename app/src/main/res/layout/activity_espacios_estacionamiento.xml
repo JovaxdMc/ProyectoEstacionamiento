@@ -12,6 +12,14 @@
             android:text="Espacios de estacionamiento"
             android:textSize="30sp"
             android:layout_gravity="center"></TextView>
+
+        <Button
+            android:id="@+id/btn_actualizar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Actualizar"
+            android:layout_gravity="center"/>
+
         <GridView
             android:id="@+id/gridViewParking"
             android:layout_width="match_parent"

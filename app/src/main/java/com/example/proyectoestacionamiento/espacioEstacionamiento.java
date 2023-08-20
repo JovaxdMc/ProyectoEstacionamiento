@@ -1,18 +1,17 @@
 package com.example.proyectoestacionamiento;
 
-import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,11 +25,18 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-
 public class espacioEstacionamiento extends AppCompatActivity {
 
     private GridView gridViewParking;
     private OkHttpClient client = new OkHttpClient();
+    private final Handler handler = new Handler();
+    private final Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            actualizarDatos();
+            handler.postDelayed(this, 3000); // Actualizar cada 3 segundos
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +45,32 @@ public class espacioEstacionamiento extends AppCompatActivity {
 
         gridViewParking = findViewById(R.id.gridViewParking);
 
-        // Realizar la solicitud HTTP al URL especificado
+        Button btnActualizar = findViewById(R.id.btn_actualizar);
+        btnActualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                actualizarDatos();
+            }
+        });
+
+        // Iniciar la actualización periódica
+        handler.postDelayed(runnable, 3000);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacks(runnable);
+    }
+
+    private void actualizarDatos() {
         Request request = new Request.Builder()
-                .url("https://estacionamientohmagdl.000webhostapp.com/Estacionamiento/Lugares/lugares.php?endpoint=espacios")
+                .url("https://estacionamientohmagdl.000webhostapp.com/Estacionamiento/Lugares/lugares.php?accion=ver_todos")
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                // Manejar error en caso de fallo de la solicitud HTTP
                 e.printStackTrace();
             }
 
@@ -56,12 +79,9 @@ public class espacioEstacionamiento extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     String responseData = response.body().string();
 
-                    // Procesar los datos de respuesta y actualizar la interfaz de usuario
                     runOnUiThread(() -> {
                         try {
                             JSONArray jsonArray = new JSONArray(responseData);
-
-                            // Crear un adaptador personalizado para cargar las imágenes en el GridView
                             GridViewAdapter adapter = new GridViewAdapter(jsonArray);
                             gridViewParking.setAdapter(adapter);
                         } catch (JSONException e) {
@@ -69,14 +89,12 @@ public class espacioEstacionamiento extends AppCompatActivity {
                         }
                     });
                 } else {
-                    // Manejar error en caso de respuesta no exitosa
                     Log.e("API Error", "Response code: " + response.code());
                 }
             }
         });
     }
 
-    // Adaptador personalizado para cargar las imágenes en el GridView
     private class GridViewAdapter extends BaseAdapter {
         private JSONArray jsonArray;
 
@@ -108,31 +126,26 @@ public class espacioEstacionamiento extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             View gridViewItem;
             if (convertView == null) {
-                // Inflar el diseño personalizado para cada elemento del GridView
                 gridViewItem = getLayoutInflater().inflate(R.layout.grid_item_layout, parent, false);
             } else {
                 gridViewItem = convertView;
             }
 
-            // Obtener el ImageView y
-            // el TextView del diseño personalizado
             ImageView imageView = gridViewItem.findViewById(R.id.imageViewParking);
             TextView textView = gridViewItem.findViewById(R.id.textViewPlaceNumber);
 
-            // Obtener el estado del espacio y cargar la imagen correspondiente
             try {
                 JSONObject jsonObject = jsonArray.getJSONObject(position);
                 String estado = jsonObject.getString("estado");
                 int idEspacio = jsonObject.getInt("id_espacio");
 
                 if (estado.equals("ocupado")) {
-                    imageView.setImageResource(R.drawable.espacio_ocupado); // Reemplaza 'espacio_ocupado' con el nombre de tu recurso de imagen/icono para espacio ocupado
+                    imageView.setImageResource(R.drawable.espacio_ocupado);
                 } else {
-                    imageView.setImageResource(R.drawable.espacio_libre); // Reemplaza 'espacio_libre' con el nombre de tu recurso de imagen/icono para espacio libre
+                    imageView.setImageResource(R.drawable.espacio_libre);
                 }
 
-                // Mostrar el número de lugar debajo de la imagen
-                textView.setText("P-" + idEspacio); // Aquí también puedes personalizar el formato del número de lugar según tus necesidades
+                textView.setText("P-" + idEspacio);
 
             } catch (JSONException e) {
                 e.printStackTrace();
