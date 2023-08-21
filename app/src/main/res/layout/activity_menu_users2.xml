@@ -102,7 +102,14 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:background="@drawable/panico"
-            android:layout_marginLeft="150dp"
+            android:layout_marginLeft="85dp"
+            android:layout_marginTop="500dp"/>
+        <ImageView
+            android:id="@+id/btnllamadaPanico"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:background="@drawable/llamada"
+            android:layout_marginLeft="240dp"
             android:layout_marginTop="500dp"/>
 
         <TextView
