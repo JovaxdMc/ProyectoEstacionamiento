@@ -74,6 +74,14 @@ public class MenuAdmin extends AppCompatActivity {
 
             }
         });
+        marco03.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MenuAdmin.this, informes.class);
+                startActivity(intent);
+
+            }
+        });
 
         btnSalir.setOnClickListener(new View.OnClickListener() {
             @Override

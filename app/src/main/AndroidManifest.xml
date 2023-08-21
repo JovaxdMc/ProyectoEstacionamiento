@@ -10,7 +10,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
-3
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -25,6 +24,10 @@
         <activity
             android:name=".Users"
             android:exported="false" />
+        <activity
+            android:name=".informes"
+            android:exported="false"
+            />
         <activity
             android:name=".Pluma"
             android:exported="false" />
