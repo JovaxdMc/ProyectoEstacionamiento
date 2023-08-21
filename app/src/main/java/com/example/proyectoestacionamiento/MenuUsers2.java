@@ -54,7 +54,7 @@ public class MenuUsers2 extends AppCompatActivity {
         btnSalir=(TextView) findViewById(R.id.btnSalir);
         lugares=(TextView) findViewById(R.id.cantidadLugares);
         obtenerNumeroEspaciosDisponibles();
-
+//a
         prefManager = new PrefManager(this);
 
         // Obtener los datos del usuario desde las preferencias
